@@ -3,6 +3,8 @@ const monedaSelect = document.querySelector('#moneda');
 const formulario = document.querySelector('#formulario');
 const resultado = document.querySelector('#resultado');
 
+
+
 const objBusqueda = {
     moneda: '',
     criptomoneda : ''
@@ -91,7 +93,7 @@ function consultarAPI() {
     fetch(url)
         .then( respuesta => respuesta.json())
         .then( cotizacion => {
-            mostrarCotizacionHTML(cotizacion.DISPLAY[criptomoneda][moneda]);
+            mostrarCotizacionHTML(cotizacion.RAW[criptomoneda][moneda]);
         })
 }
 
@@ -101,9 +103,25 @@ function mostrarCotizacionHTML(cotizacion) {
 
     const { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, LASTUPDATE} = cotizacion;
 
+    const cantidad = document.querySelector('#cantidad').value;
+    const cant = parseFloat(cantidad);
+
+    // const precioso = parseFloat(PRICE).value;
+    // const precioso = parseFloat(PRICE.replace(/\$/, ''));
+    // const avaluo = precioso / cant;
+
+    const avaluo = cant / PRICE;
+
+    console.log(avaluo);
+    // console.log(PRICE);
+
     const precio = document.createElement('p');
     precio.classList.add('precio');
-    precio.innerHTML = `El Precio es: <span>${PRICE}</span>`;
+    precio.innerHTML = `La cotizacion actual es: <span>${PRICE}</span>`;
+
+    const tipoCambio = document.createElement('p');
+    tipoCambio.classList.add('equivalente');
+    tipoCambio.innerHTML = `<h4>Su equivalente en Criptomoneda: <span>${avaluo}</span>`;
 
     const precioAlto = document.createElement('p');
     precioAlto.innerHTML = `<p>Precio más alto del día <span>${HIGHDAY}</span>`;
@@ -114,16 +132,15 @@ function mostrarCotizacionHTML(cotizacion) {
     const ultimasHoras = document.createElement('p');
     ultimasHoras.innerHTML = `<p>Variación últimas 24 horas <span>${CHANGEPCT24HOUR}%</span>`;
 
-    const ultimaActualización = document.createElement('p');
-    ultimaActualización.innerHTML = `<p>Última Actualización <span>${LASTUPDATE}</span>`;
-
-
 
     resultado.appendChild(precio);
+    resultado.appendChild(tipoCambio);
     resultado.appendChild(precioAlto);
     resultado.appendChild(precioBajo);
     resultado.appendChild(ultimasHoras);
-    resultado.appendChild(ultimaActualización);
+    
+
+    // convertirBTC();
 }
 
 
@@ -147,3 +164,33 @@ function mostrarSpinner() {
 
     resultado.appendChild(spinner);
 }
+
+
+// function convertirBTC(cambio){
+ 
+//         const { PRICE } = cambio;
+
+//         final = cambio * cantidad;
+
+//     const final = document.createElement('p');
+//     final.classList.add('precio');
+//     final.innerHTML = `El Precio es: <span>${final}</span>`;
+
+
+//     resultado.appendChild(ultimaActualización);
+
+    
+//         const cantidad = document.querySelector('#cantidad').textContent;
+//         const cant = parseFloat(cantidad);
+ 
+//         console.log(cant);
+    
+// }
+
+
+
+
+
+
+
+

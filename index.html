@@ -9,15 +9,24 @@
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-
+   
     <div class="container">
+        <h1>Guayacoin</h1>
+        <p style="color: white; font-size: 24px;" >Cotizador de Criptomonedas en linea</p>
+        
         <div class="row">
+            
             <div class="one-half column">
                 <img src="img/cryptomonedas.png">
             </div>
             <div class="one-half column">
+
+                
                 <form id="formulario">
                     <div class="row">
+                        <label>Ingresa tu cantidad</label>
+                            <input class="u-full-width" id="cantidad" type="string" style="color: black; height: 40px;"/>
+                         
                         <label>Elige tu Moneda</label>
                         <select
                             class="u-full-width"
@@ -44,7 +53,7 @@
                         </select>
                     </div>
                     </div>
-                    <input class="button-primary u-full-width" type="submit" value="Cotizar" />
+                    <input class="button-primary u-full-width" type="submit" value="Cotizar / Transformar" />
 
                     <div id="resultado" class="resultado"></div>
                 </form>
