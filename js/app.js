@@ -110,10 +110,11 @@ function mostrarCotizacionHTML(cotizacion) {
     // const precioso = parseFloat(PRICE.replace(/\$/, ''));
     // const avaluo = precioso / cant;
 
-    const avaluo = cant / PRICE;
+    const avaluotr = cant / PRICE;
 
-    console.log(avaluo);
+    // console.log(avaluotr);
     // console.log(PRICE);
+    const avaluo = avaluotr.toFixed(2); 
 
     const precio = document.createElement('p');
     precio.classList.add('precio');
